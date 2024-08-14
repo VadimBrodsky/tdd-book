@@ -1,32 +1,32 @@
 import { expect, test, describe } from "bun:test";
-import { Dollar, Franc } from ".";
+import { Dollar, Franc, Money } from ".";
 
 describe("Dollars", () => {
   test("multiplication", () => {
-    let five = new Dollar(5);
+    let five = Money.dollar(5);
 
-    expect(five.times(2)).toEqual(new Dollar(10));
-    expect(five.times(3)).toEqual(new Dollar(15));
+    expect(five.times(2)).toEqual(Money.dollar(10));
+    expect(five.times(3)).toEqual(Money.dollar(15));
   });
 
   test("equiality", () => {
-    expect(new Dollar(5).equals(new Dollar(5))).toBeTrue();
-    expect(new Dollar(5).equals(new Dollar(6))).toBeFalse();
-    expect(new Dollar(5).equals(new Franc(5))).toBeFalse();
+    expect(Money.dollar(5).equals(Money.dollar(5))).toBeTrue();
+    expect(Money.dollar(5).equals(Money.dollar(6))).toBeFalse();
+    expect(Money.dollar(5).equals(Money.franc(5))).toBeFalse();
   });
 });
 
 describe("Francs", () => {
   test("multiplication", () => {
-    let five = new Franc(5);
+    let five = Money.franc(5);
 
-    expect(five.times(2)).toEqual(new Franc(10));
-    expect(five.times(3)).toEqual(new Franc(15));
+    expect(five.times(2)).toEqual(Money.franc(10));
+    expect(five.times(3)).toEqual(Money.franc(15));
   });
 
   test("equiality", () => {
-    expect(new Franc(5).equals(new Franc(5))).toBeTrue();
-    expect(new Franc(5).equals(new Franc(6))).toBeFalse();
-    expect(new Franc(5).equals(new Dollar(5))).toBeFalse();
+    expect(Money.franc(5).equals(Money.franc(5))).toBeTrue();
+    expect(Money.franc(5).equals(Money.franc(6))).toBeFalse();
+    expect(Money.franc(5).equals(Money.dollar(5))).toBeFalse();
   });
 });
