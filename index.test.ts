@@ -10,3 +10,8 @@ test("multiplication", () => {
   product = five.times(3);
   expect(product.amount).toEqual(15);
 });
+
+test("equiality", () => {
+  expect(new Dollar(5).equals(new Dollar(5))).toBeTrue();
+  expect(new Dollar(5).equals(new Dollar(6))).toBeFalse();
+});
