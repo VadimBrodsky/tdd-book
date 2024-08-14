@@ -1,12 +1,12 @@
 export class Dollar {
-  amount: number;
+  private amount: number;
 
   constructor(amount: number) {
     this.amount = amount;
   }
 
   times(multiplier: number) {
-    return new Dollar(this.amount * multiplier)
+    return new Dollar(this.amount * multiplier);
   }
 
   equals(object: Dollar) {
