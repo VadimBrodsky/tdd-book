@@ -6,9 +6,8 @@ class Money {
   }
 
   public equals(object: Money): boolean {
-    return this.amount == object.amount;
+    return this.amount == object.amount && this.constructor.name === object.constructor.name;
   }
-
 }
 
 export class Dollar extends Money {
@@ -19,10 +18,6 @@ export class Dollar extends Money {
   times(multiplier: number) {
     return new Dollar(this.amount * multiplier);
   }
-
-  equals(object: Money) {
-    return this.amount === (object as Dollar).amount;
-  }
 }
 
 export class Franc extends Money {
@@ -32,9 +27,5 @@ export class Franc extends Money {
 
   times(multiplier: number) {
     return new Franc(this.amount * multiplier);
-  }
-
-  equals(object: Money) {
-    return this.amount === (object as Franc).amount;
   }
 }
