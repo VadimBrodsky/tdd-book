@@ -22,4 +22,9 @@ describe("Francs", () => {
     expect(five.times(2)).toEqual(new Franc(10));
     expect(five.times(3)).toEqual(new Franc(15));
   });
+
+  test("equiality", () => {
+    expect(new Franc(5).equals(new Franc(5))).toBeTrue();
+    expect(new Franc(5).equals(new Franc(6))).toBeFalse();
+  });
 });
