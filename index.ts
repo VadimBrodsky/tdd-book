@@ -1,9 +1,10 @@
 export abstract class Money {
   protected amount: number;
-  protected abstract currencySymbol: string;
+  protected currencySymbol: string;
 
-  constructor(amount: number) {
+  constructor(amount: number, currencySymbol: string) {
     this.amount = amount;
+    this.currencySymbol = currencySymbol;
   }
 
   public equals(object: Money): boolean {
@@ -26,11 +27,8 @@ export abstract class Money {
 }
 
 export class Dollar extends Money {
-  protected currencySymbol: string;
-
   constructor(amount: number, currencySymbol: string) {
-    super(amount);
-    this.currencySymbol = currencySymbol;
+    super(amount, currencySymbol);
   }
 
   times(multiplier: number): Money {
@@ -39,11 +37,8 @@ export class Dollar extends Money {
 }
 
 export class Franc extends Money {
-  protected currencySymbol: string;
-
   constructor(amount: number, currencySymbol: string) {
-    super(amount);
-    this.currencySymbol = currencySymbol;
+    super(amount, currencySymbol);
   }
 
   times(multiplier: number): Money {
