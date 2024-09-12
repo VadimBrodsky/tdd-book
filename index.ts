@@ -1,5 +1,6 @@
 export abstract class Money {
   protected amount: number;
+  protected abstract currencySymbol: string;
 
   constructor(amount: number) {
     this.amount = amount;
@@ -9,28 +10,31 @@ export abstract class Money {
     return this.amount == object.amount && this.constructor.name === object.constructor.name;
   }
 
+  public currency(): string {
+    return this.currencySymbol;
+  }
+
   abstract times(multiplier: number): Money;
-  abstract currency(): String;
 
   public static dollar(amount: number): Dollar {
-    return new Dollar(amount);
+    return new Dollar(amount, "USD");
   }
 
   public static franc(amount: number): Franc {
-    return new Franc(amount);
+    return new Franc(amount, "CHF");
   }
 }
 
 export class Dollar extends Money {
-  private currencySymbol: string;
+  protected currencySymbol: string;
 
-  constructor(amount: number) {
+  constructor(amount: number, currencySymbol: string) {
     super(amount);
-    this.currencySymbol = "USD";
+    this.currencySymbol = currencySymbol;
   }
 
   times(multiplier: number): Money {
-    return new Dollar(this.amount * multiplier);
+    return Money.dollar(this.amount * multiplier);
   }
 
   currency() {
@@ -39,18 +43,14 @@ export class Dollar extends Money {
 }
 
 export class Franc extends Money {
-  private currencySymbol: string;
+  protected currencySymbol: string;
 
-  constructor(amount: number) {
+  constructor(amount: number, currencySymbol: string) {
     super(amount);
-    this.currencySymbol = "CHF";
+    this.currencySymbol = currencySymbol;
   }
 
   times(multiplier: number): Money {
-    return new Franc(this.amount * multiplier);
-  }
-
-  currency() {
-    return this.currencySymbol;
+    return Money.franc(this.amount * multiplier);
   }
 }
